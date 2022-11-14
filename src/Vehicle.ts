@@ -1,84 +1,63 @@
 /**
- * This class creates a vehicle
+ * This class creates a vehicle with parameters concerning the
+ * speed, color, and max speed.
  *
  * By:      Huzaifa Khalid
  * Version: 1.0
- * Since:   2022-10-18
+ * Since:   2022-11-01
  */
 
 class Vehicle {
-  public speed: number = 0
-  public maxSpeed: number
-  public numberOfDoors: number
-  public licensePlate: string
-  public colour: string
+  // declares all variables
+  private speed = 0
+  private readonly maxSpeed: number
+  private color: string
 
-  constructor(
-    colour: string,
-    licensePlate: string,
-    numberOfDoors: number,
-    maxSpeed: number
-  ) {
-    this.licensePlate = licensePlate
-    this.colour = colour
+  // Vehicle Constructor - allows index.ts to initialize values
+  constructor(maxSpeed: number, color: string) {
     this.maxSpeed = maxSpeed
-    this.numberOfDoors = numberOfDoors
+    this.color = color
   }
 
-  // getters
-  public getSpeed(): number {
+  // color Getter - returns current color value
+  getColor(): string {
+    return this.color
+  }
+
+  // color Setter - allows user to change color
+  setColor(colorInput: string): void {
+    this.color = colorInput
+  }
+
+  // speed getter - returns current speed value
+  getSpeed(): number {
     return this.speed
   }
 
-  public getMaxSpeed(): number {
+  // speed setter - needed to change speed from Bike.ts
+  setSpeed(speedInput: number): void {
+    this.speed = speedInput
+  }
+
+  // maxSpeed getter - returns current doorCount value
+  getMaxSpeed(): number {
     return this.maxSpeed
   }
 
-  public getNumberOfDoors(): number {
-    return this.numberOfDoors
-  }
-
-  public getLicensePlate(): string {
-    return this.licensePlate
-  }
-
-  public getColour(): string {
-    return this.colour
-  }
-
-  // setters
-  public setLicensePlate(thePlate: string): void {
-    this.licensePlate = thePlate
-  }
-
-  public setColour(theColour: string): void {
-    this.colour = theColour
-  }
-
-  public accelerate(accelerationPower: number, accelerationTime: number): void {
-    this.speed = accelerationPower * accelerationTime + this.speed
-
-    if (this.speed > this.maxSpeed) {
+  // accelerate method - increases speed by power * time
+  accelerate(accelPower: number, accelTime: number): void {
+    this.speed += accelPower * accelTime
+    if (!(this.speed < this.maxSpeed)) {
       this.speed = this.maxSpeed
     }
   }
 
-  public break(breakPower: number, breakTime: number): void {
-    this.speed = this.speed - breakPower * breakTime
-
-    if (this.speed < 0) {
+  // break method - decreases speed by power * time
+  braking(accelPower: number, accelTime: number): void {
+    this.speed -= accelPower * accelTime
+    if (!(this.speed >= 0)) {
       this.speed = 0
     }
-  }
-
-  public status(): void {
-    console.log(
-      `        --> Speed: ${this.speed}
-        --> MaxSpeed: ${this.maxSpeed}
-        --> Number of doors: ${this.numberOfDoors}
-        --> License Plate: ${this.licensePlate}
-        --> Colour: ${this.colour}`
-    )
   }
 }
 
