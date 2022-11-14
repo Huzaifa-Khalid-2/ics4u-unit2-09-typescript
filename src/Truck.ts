@@ -2,7 +2,7 @@
  * This is a child class of Vehicle.ts, which contains
  * fields and methods related to a truck.
  *
- * By:      Aidan Lalonde-Novales
+ * By:      Huzaifa Khalid
  * Version: 1.0
  * Since:   2022-11-01
  */
@@ -16,10 +16,8 @@ class Truck extends Vehicle {
 
   // status method - prints all fields applied to truck object
   status(): void {
+    super.staus()
     console.log(`
-      -> Speed: ${super.getSpeed()}
-      -> Max Speed: ${super.getMaxSpeed()}
-      -> Color: ${super.getColor()}
       -> License Plate: ${this.licensePlate}
       -> Air Pressure: ${this.airPressure}
     `)
